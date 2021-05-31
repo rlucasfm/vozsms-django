@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Plataforma de Campanhas SMS Preventivas">
+    <meta name="author" content="Richard Lucas">
+
+    <title>{% block title %} VozSMS {% endblock %}</title>
+
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- CSS MAIN particular -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <!-- CSS para Impressão -->
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/print.min.css'%} ">
+
+    <!-- LOAD JQUERY FIRST -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript-->    
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Plugin própria para Mascaras -->
+    <script src="{% static 'js/mask.js' %}"></script>
+    <!-- Lib para impressão -->
+    <script src="{% static 'js/print.min.js' %}"></script>
+</head>
+<body id="page-top" class="sidebar-toggled">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% block sidebar %}
+        {% include "webpage/base/sidebar.html" %}
+        {% endblock sidebar%}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content" class="overflow-hidden">
+
+                {% include "webpage/base/header.html" %}
+
+                {% block content %}        
+                {% endblock content %}  
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Grupo Voz {% now "Y" %}</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+
+    </div>
+
+    {% include "webpage/base/footer.html" %}
+
+{% if messages %} 
+
+    {% for message in messages %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <!-- TOAST DE AVISO - SUCCESS FLASHDATA -->
+        <!-- Then put toasts within -->
+        <div class="toast" role="alert" id="toastSuccess" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 15px; left:50%; z-index:15">
+            <div class="toast-header">
+                <strong class="mr-auto">Sucesso!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        <script>
+            $('#toastSuccess').toast('show')
+        </script>
+        {% endif %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        <!-- TOAST DE AVISO - ERRO FLASHDATA -->
+        <!-- Then put toasts within -->
+        <div class="toast" role="alert" id="toastError" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 15px; left:50%; z-index:15">
+            <div class="toast-header">
+                <strong class="mr-auto">Houve um erro...</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        <script>
+            $('#toastError').toast('show')
+        </script>
+        {% endif %}
+
+    {% endfor %}
+    
+{% endif %}
+</body>
+</html>
