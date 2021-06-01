@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout, login
 from django.contrib import messages
 from .models import Cliente, User_Credor, Credor
+from .forms import CadastroClienteForm
 
 
 
@@ -21,9 +22,28 @@ class CadastrarCliente(LoginRequiredMixin, TemplateView):
     template_name = "webpage/clientes/cadastrar.html"
 
     def post(self, request):
+        nome = request.POST['nome']
+
         messages.info(request, 'Cliente cadastrado com sucesso!')
         return redirect('cadastro_cliente')
 
+@login_required
+def CadastrarCliente(request):
+    if request.method == 'POST':
+        form = CadastroClienteForm(request.POST)
+
+        if form.is_valid():
+            messages.info(request, 'Cliente cadastrado com sucesso!')
+            return redirect('cadastro_cliente')
+            
+        else:
+            messages.error(request, 'Verifique os campos para cadastrar o cliente!')
+
+
+    else:
+        form = CadastroClienteForm()
+
+    return render(request, 'webpage/clientes/cadastrar.html', {'form': form})
 # ---------- Autenticação -----------
 def LoginView(request):
     """ View para manipulação do login. """

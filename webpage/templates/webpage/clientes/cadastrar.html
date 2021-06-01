@@ -11,7 +11,7 @@
     <img src="{% static 'img/loader.gif' %}" alt="Loading cool animation">
 </div>
 
-<form action="{% url 'cadastro_cliente' %}" method="POST">    
+{% comment %} <form action="{% url 'cadastro_cliente' %}" method="POST">    
     {% csrf_token %}
     <div class="card">
         <div class="card-body">        
@@ -160,7 +160,179 @@
             <button type="submit" class="btn btn-primary mt-4" id="btnSubmit">Cadastrar</button>
         </div>
     </div>
-</form>                 
+</form>                  {% endcomment %}
+<form action="{% url 'cadastro_cliente' %}" method="POST">    
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">        
+            <h4>Informações do Cliente</h4>
+            <hr> 
+            <div class="row">
+                {{ form.non_field_errors }}
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        {{ form.nome.errors }}
+                        <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                        <input type="text" class="form-control" name="{{ form.nome.html_name }}" id="{{ form.nome.id_for_label }}" aria-describedby="nomeHelp" value="{{ form.nome.value }}">
+                        <small id="nomeHelp" class="form-text text-muted">Este é o nome do cliente</small>
+                    </div>
+                </div>  
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form.cpf.errors }}
+                        <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
+                        <input type="text" name="{{ form.cpf.html_name }}" id="{{ form.cpf.id_for_label }}" class="form-control" value="{{ form.cpf.value }}">
+                        <small>Apenas números</small>
+                    </div>
+                </div>                              
+            </div> 
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form.endereco.errors }}
+                        <label for="{{ form.endereco.id_for_label }}">{{ form.endereco.label }}</label>
+                        <input type="text" name="{{ form.endereco.html_name }}" id="{{ form.endereco.id_for_label }}" class="form-control" value="{{ form.endereco.value }}">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    {{ form.bairro.errors }}
+                    <label for="{{ form.bairro.id_for_label }}">{{ form.bairro.label }}</label>
+                    <input type="text" name="{{ form.bairro.html_name }}" id="{{ form.bairro.id_for_label }}" class="form-control" value="{{ form.bairro.value }}">
+                </div>
+                <div class="col-sm-3">
+                    {{ form.cidade.errors }}
+                    <label for="{{ form.cidade.id_for_label }}">{{ form.cidade.label }}</label>
+                    <input type="text" name="{{ form.cidade.html_name }}" id="{{ form.cidade.id_for_label }}" class="form-control" value="{{ form.cidade.value }}">
+                </div>
+                <div class="col-sm-2">
+                    {{ form.cep.errors }}
+                    <label for="{{ form.cep.id_for_label }}">{{ form.cep.label }}</label>
+                    <input type="text" name="{{ form.cep.html_name }}" id="{{ form.cep.id_for_label }}" class="form-control" placeholder="00000-000">
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        {{ form.uf.errors }}
+                        <label for="{{ form.uf.id_for_label }}">{{ form.uf.label }}</label>
+                        <input type="text" name="{{ form.uf.html_name }}" id="{{ form.uf.id_for_label }}" class="form-control" value="{{ form.uf.value }}">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        {{ form.telefone1.errors }}
+                        <label for="{{ form.telefone1.id_for_label }}">{{ form.telefone1.label }}</label>
+                        <input type="text" name="{{ form.telefone1.html_name }}" id="{{ form.telefone1.id_for_label }}" class="form-control" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        {{ form.telefone2.errors }}
+                        <label for="{{ form.telefone2.id_for_label }}">{{ form.telefone2.label }}</label>
+                        <input type="text" name="{{ form.telefone2.html_name }}" id="{{ form.telefone2.id_for_label }}" class="form-control" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form.telefone3.errors }}
+                        <label for="{{ form.telefone3.id_for_label }}">{{ form.telefone3.label }}</label>
+                        <input type="text" name="{{ form.telefone3.html_name }}" id="{{ form.telefone3.id_for_label }}" class="form-control" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form.telefone4.errors }}
+                        <label for="{{ form.telefone4.id_for_label }}">{{ form.telefone4.label }}</label>
+                        <input type="text" name="{{ form.telefone4.html_name }}" id="{{ form.telefone4.id_for_label }}" class="form-control" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form.telefone5.errors }}
+                        <label for="{{ form.telefone5.id_for_label }}">{{ form.telefone5.label }}</label>
+                        <input type="text" name="{{ form.telefone5.html_name }}" id="{{ form.telefone5.id_for_label }}" class="form-control" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form.telefone6.errors }}
+                        <label for="{{ form.telefone6.id_for_label }}">{{ form.telefone6.label }}</label>
+                        <input type="text" name="{{ form.telefone6.html_name }}" id="{{ form.telefone6.id_for_label }}" class="form-control" placeholder="(99) 99999-9999">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.email1.errors }}
+                        <label for="{{ form.email1.id_for_label }}">{{ form.email1.label }}</label>
+                        <input type="email" name="{{ form.email1.html_name }}" id="{{ form.email1.id_for_label }}" class="form-control" placeholder="email@dominio.com">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.email2.errors }}
+                        <label for="{{ form.email2.id_for_label }}">{{ form.email2.label }}</label>
+                        <input type="email" name="{{ form.email2.html_name }}" id="{{ form.email2.id_for_label }}" class="form-control" placeholder="email@dominio.com">
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <h4>Informações de Operação</h4>
+            <hr>            
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form.numop.errors }}
+                        <label for="{{ form.numop.id_for_label }}">{{ form.numop.label }}</label>
+                        <input type="text" name="{{ form.numop.html_name }}" id="{{ form.numop.id_for_label }}" class="form-control" placeholder="00000">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form.nomeop.errors }}
+                        <label for="{{ form.nomeop.id_for_label }}">{{ form.nomeop.label }}</label>
+                        <input type="text" name="{{ form.nomeop.html_name }}" id="{{ form.nomeop.id_for_label }}" class="form-control" placeholder="MENSALIDADE">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form.vencimento.errors }}
+                        <label for="{{ form.vencimento.id_for_label }}">{{ form.vencimento.label }}</label>
+                        <input type="date" name="{{ form.vencimento.html_name }}" id="{{ form.vencimento.id_for_label }}" class="form-control">
+                    </div>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        {{ form.valorop.errors }}
+                        <label for="{{ form.valorop.id_for_label }}">{{ form.valorop.label }}</label>
+                        <input type="number" name="{{ form.valorop.html_name }}" id="{{ form.valorop.id_for_label }}" class="form-control" step="0.01" min="0">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.nomealuno.errors }}
+                        <label for="{{ form.nomealuno.id_for_label }}">{{ form.nomealuno.label }}</label>
+                        <input type="text" name="{{ form.nomealuno.html_name }}" id="{{ form.nomealuno.id_for_label }}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        {{ form.descricao.errors }}
+                        <label for="{{ form.descricao.id_for_label }}">{{ form.descricao.label }}</label>
+                        <input type="text" name="{{ form.descricao.html_name }}" id="{{ form.descricao.id_for_label }}" class="form-control">
+                    </div>
+                </div>
+            </div>     
+            <button type="submit" class="btn btn-primary mt-4" id="btnSubmit">Cadastrar</button>
+        </div>
+    </div>
+</form>
 
 </div>
 <script>
