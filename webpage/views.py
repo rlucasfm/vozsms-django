@@ -51,17 +51,22 @@ def LoginView(request):
         email = request.POST['email']
         password = request.POST['password']
 
-        user = authenticate_user(email, password)
+        try:
+            user = authenticate_user(email, password)
 
-        if user is not None:
-            if user.is_active:
-                login(request, user)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
 
                 return redirect('index')
 
-        else:
+            else:
+                messages.error(request, 'O usuário não existe ou a senha não corresponde.')
+                return redirect('login')
+                
+        except:
             messages.error(request, 'O usuário não existe ou a senha não corresponde.')
-            return redirect('login')
+            return redirect('login')               
 
     else:
         return render(request, "webpage/login.html")
