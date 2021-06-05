@@ -1,8 +1,7 @@
 version: "3.9"
    
 services:
-  db:
-    container_name: db
+  db:    
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
@@ -12,8 +11,6 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - '5433:5432'
-    networks:
-      - djangonetwork
 
   web:
     build: .
@@ -24,10 +21,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    links:
-      - db:db
-    networks:
-      - djangonetwork
 
   pgadmin:
     image: dpage/pgadmin4
@@ -38,12 +31,4 @@ services:
       - "16543:80"
     depends_on:
       - db
-    links:
-      - db:db
-    networks:
-      - djangonetwork
-
-networks:
-  djangonetwork:
-    driver: bridge
 
