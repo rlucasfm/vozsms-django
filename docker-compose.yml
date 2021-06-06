@@ -35,13 +35,13 @@ services:
   #   depends_on:
   #     - db
 
-  # nginx:
-  #   build: ./nginx
-  #   ports:
-  #     - 8000:80
-  #   volumes:
-  #     - ./static:/home/web/static
-  #   depends_on:
-  #     - web
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./static:/home/web/static
+    depends_on:
+      - web
 
 
