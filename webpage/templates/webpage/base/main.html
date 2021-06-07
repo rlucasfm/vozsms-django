@@ -75,7 +75,7 @@
 
     {% for message in messages %}
 
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
         <!-- TOAST DE AVISO - SUCCESS FLASHDATA -->
         <!-- Then put toasts within -->
         <div class="toast" role="alert" id="toastSuccess" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 15px; left:50%; z-index:15">
@@ -94,7 +94,7 @@
         </script>
         {% endif %}
 
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
         <!-- TOAST DE AVISO - ERRO FLASHDATA -->
         <!-- Then put toasts within -->
         <div class="toast" role="alert" id="toastError" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 15px; left:50%; z-index:15">

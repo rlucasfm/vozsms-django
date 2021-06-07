@@ -41,7 +41,29 @@ def CadastrarCliente(request):
 
 
     else:
-        form = CadastroClienteForm()
+        form = CadastroClienteForm(initial={
+            'nome': '',
+            'cpf': '',
+            'endereco': '',
+            'bairro': '',
+            'cidade': '',
+            'cep': '',
+            'uf': '',
+            'telefone1': '',
+            'telefone2': '',
+            'telefone3': '',
+            'telefone4': '',
+            'telefone5': '',
+            'telefone6': '',
+            'email1': '',
+            'email2': '',
+            'numop': '',
+            'nomeop': '',
+            'vencimento': '',
+            'valorop': '',
+            'nomealuno': '',
+            'descricao': '',
+        })
 
     return render(request, 'webpage/clientes/cadastrar.html', {'form': form})
 # ---------- Autenticação -----------
