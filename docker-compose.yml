@@ -25,22 +25,22 @@ services:
     depends_on:
       - db
 
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: "richardlucasfm@gmail.com"
-  #     PGADMIN_DEFAULT_PASSWORD: "admin"
-  #   ports:
-  #     - "16543:80"
-  #   depends_on:
-  #     - db
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "richardlucasfm@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
 
   nginx:
     build: ./nginx
     ports:
       - 8000:80
     volumes:
-      - ./static:/home/web/static
+      - ./staticfiles:/home/web/static
     depends_on:
       - web
 
